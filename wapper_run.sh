@@ -2,7 +2,6 @@
 
 ## Prerequistie
 
-yum install python git  -y
-yum --enablerepo=epel install ansible -y
+yum --enablerepo=epel install ansible python git -y
 
 ansible-playbook provision_kube_cluster.yml
