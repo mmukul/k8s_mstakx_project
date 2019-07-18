@@ -1,0 +1,31 @@
+---
+- hosts: all
+  vars:
+   packages:
+   - docker
+   - kubeadm
+   - kubectl
+   - kubelet
+   - yum-utils
+
+  tasks:
+   - name: Remove Kubernetes repo
+     file:
+      path: /etc/yum.repos.d/kubernetes.repo
+      state: absent
+
+   - name: Uninstall kubernetes packages
+     yum:
+      name: "{{ item }}"
+      state: absent
+     with_items: "{{ packages }}"
+
+   - name: Remove required files
+     file:
+      path: "{{ item }}"
+      state: absent
+     with_items:
+       - /etc/kubernetes/
+       - /var/lib/etcd/
+       - $HOME/.kube/
+
