@@ -25,7 +25,7 @@ spec:
   tls:
   - hosts:
     - staging-guestbook.mstakx.io
-    secretName: <ingress-secret>
+    secretName: secret-stage
   rules:
   - host: staging-guestbook.mstakx.io
     http:
@@ -63,7 +63,7 @@ spec:
   tls:
   - hosts:
     - staging-guestbook.mstakx.io
-    secretName: <ingress-secret>
+    secretName: secret-prod
   rules:
   - host: guestbook.mstakx.io
     http:

@@ -9,6 +9,7 @@ packages:
 - kubeadm
 - kubectl
 - yum-utils
+- epel-release
 
 services:
 - docker

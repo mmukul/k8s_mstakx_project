@@ -1,0 +1,14 @@
+---
+- hosts: local
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Run kube commands
+      command: "{{item}}"
+      with_items:
+         - kubectl create -f playbooks/ns.yaml
+         - kubectl create -f playbooks/redis-master-deployment.yaml
+         - kubectl create -f playbooks/redis-master-service.yaml
+         - kubectl create -f playbooks/redis-slave-deployment.yaml
+         - kubectl create -f playbooks/frontend-deployment.yaml
+         - kubectl create -f playbooks/frontend-service.yaml
