@@ -1,9 +1,2 @@
-[kubernetes-master-nodes]
-kube-master ansible_host=192.168.43.199
-
-[kubernetes-worker-nodes]
-kube-worker1 ansible_host=192.168.43.218
-kube-worker2 ansible_host=192.168.43.219
-
-[local]
+[master]
 localhost
