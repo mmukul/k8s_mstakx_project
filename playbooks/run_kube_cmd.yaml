@@ -1,7 +1,6 @@
 ---
-- hosts: local
+- hosts: master
   connection: local
-  gather_facts: false
   tasks:
     - name: Run kube commands
       command: "{{item}}"

@@ -1,6 +1,5 @@
 #Enter your master node advertise ip address and cidr range for the pods.
 
-ad_addr: 192.168.43.199
 cidr_v: 172.16.0.0/16
 
 ##Dont Edit these below values, these are mandatory to configure kubernetes cluster

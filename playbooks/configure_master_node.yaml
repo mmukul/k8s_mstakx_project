@@ -1,5 +1,5 @@
 ---
-- hosts: kubernetes-master-nodes
+- hosts: localhost
   vars_files:
   - env_variables 
   tasks:
@@ -7,7 +7,7 @@
     shell: kubeadm config images pull
 
   - name: Initializing Kubernetes cluster
-    shell: kubeadm init --apiserver-advertise-address {{ad_addr}} --pod-network-cidr={{cidr_v}}
+    shell: "kubeadm init --apiserver-advertise-address {{ansible_eth0.ipv4.address}} --pod-network-cidr={{cidr_v}}"
     register: output
 
   - name: Storing Logs and Generated token for future purpose.
