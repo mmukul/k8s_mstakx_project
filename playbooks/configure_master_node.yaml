@@ -1,14 +1,20 @@
 ---
-- hosts: localhost
+- hosts: master
   vars_files:
   - env_variables 
   tasks:
   - name: Pulling images required for Kubernetes cluster
     shell: kubeadm config images pull
 
+  - name: Restart services
+    service:
+      name: kubelet
+      state: restarted
+
   - name: Initializing Kubernetes cluster
-    shell: "kubeadm init --apiserver-advertise-address {{ansible_eth0.ipv4.address}} --pod-network-cidr={{cidr_v}}"
+    shell: "kubeadm init --apiserver-advertise-address {{ansible_enp0s8.ipv4.address}} --pod-network-cidr={{cidr_v}}"
     register: output
+    ignore_errors: true
 
   - name: Storing Logs and Generated token for future purpose.
     local_action: copy content={{ output.stdout }} dest={{ token_file }}
