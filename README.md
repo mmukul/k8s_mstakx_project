@@ -1,6 +1,6 @@
 # Provision Kubernetes Cluster with Ansible
 
-## AWS Instance Provision Requirment
+## AWS Instance Requirment
 
 AMI: ami-0d2692b6acea72ee6
 Instance Type: t2.medium
@@ -11,10 +11,9 @@ Instance tag:
    - tag-1: kube-master
    - tag-2: kube-worker
 
-## Step1: Execute script from kube-master
+## Execution on kubernetes kube-master Instance 
+./wapper_master.sh
 
-$ ansible-playbook provision_kube_cluster.yml
-
-## Step1: Execute script from kube-worker
-
+## Execution on kubernetes kube-worker Instance 
+./wapper_worker.sh
 

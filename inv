@@ -1,2 +1,5 @@
 [master]
 localhost
+
+[worker]
+localhost
