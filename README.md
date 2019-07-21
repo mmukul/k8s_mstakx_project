@@ -1,4 +1,4 @@
-# Provision Kubernetes Cluster with Ansible on AWS
+# Provision Kubernetes Cluster on AWS
 
 ## AWS Instance Requirment
 
@@ -13,9 +13,9 @@
 	tag-2: kube-worker
 6. Node size: t2.medium
 
-## Execution on kubernetes kube-master Instance 
+## Execution step on kubernetes kube-master Instance 
 ./wapper_master.sh
 
-## Execution on kubernetes kube-worker Instance 
+## Execution step on kubernetes kube-worker Instance 
 ./wapper_worker.sh
 
