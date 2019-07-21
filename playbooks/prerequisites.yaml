@@ -12,9 +12,6 @@
       regexp: '(.*swap*)'
       replace: '#\1'
    
-   - name: Disable selinux
-     command: sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
-   
    - name: Create Kubernetes repo
      file:
       path: /etc/yum.repos.d/kubernetes.repo
@@ -60,12 +57,6 @@
 
    - name: Enable bridge firewall rule
      shell: "echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
-
-   - name: Cgroup driver
-     command: "{{item}}"
-     with_items:
-           - sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-           - systemctl daemon-reload
 
    - name: Restart kubelet services
      service:

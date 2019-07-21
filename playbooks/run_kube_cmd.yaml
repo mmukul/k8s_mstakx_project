@@ -5,9 +5,21 @@
     - name: Run kube commands
       command: "{{item}}"
       with_items:
-         - kubectl create -f playbooks/ns.yaml
-         - kubectl create -f playbooks/redis-master-deployment.yaml
-         - kubectl create -f playbooks/redis-master-service.yaml
-         - kubectl create -f playbooks/redis-slave-deployment.yaml
-         - kubectl create -f playbooks/frontend-deployment.yaml
-         - kubectl create -f playbooks/frontend-service.yaml
+         - kubectl apply -f playbooks/ns.yaml
+         - kubectl apply -f playbooks/redis-master-deployment.yaml
+         - kubectl apply -f playbooks/redis-master-service.yaml
+         - kubectl apply -f playbooks/redis-slave-deployment.yaml
+         - kubectl apply -f playbooks/frontend-deployment.yaml
+         - kubectl apply -f playbooks/frontend-service.yaml
+         - kubectl autoscale deployment redis-master --cpu-percent=50 --min=1 --max=10
+         - kubectl autoscale deployment redis-slave-stage --cpu-percent=50 --min=1 --max=10
+         - kubectl autoscale deployment redis-slave-prod --cpu-percent=50 --min=1 --max=10
+         - kubectl autoscale deployment frontend-stage --cpu-percent=50 --min=1 --max=10
+         - kubectl autoscale deployment frontend-prod --cpu-percent=50 --min=1 --max=10
+
+    - name: Query Pods Status
+      command: kubectl get pods -l app=guestbook -l tier=frontend
+      register: pod
+
+    - debug:
+        var: pod
